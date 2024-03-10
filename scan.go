@@ -91,6 +91,14 @@ func recursiveScanFolder(folder string) []string {
 	return scanGitFolders(make([]string, 0), folder)
 }
 
+func scan(folder string){
+	fmt.Printf("Found folders:\n\n")
+	repositories := recursiveScanFolder(folder)
+	filePath := getDotFilePath()
+	addNewSliceElementsToFile(filePath, repositories)
+	fmt.Printf("\n\nSuccessfully added\n\n")
+}
+
 func scanGitFolders(folders []string, folder string) []string {
 	folder = strings.TrimSuffix(folder, "/")
 	f, err := os.Open(folder)
